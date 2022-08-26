@@ -311,7 +311,7 @@ $conn->set_charset("utf8");
 
 							
 
-		  				}
+		  			}
 		  				//end Insert to nouveau, voiture
 
 
@@ -563,8 +563,6 @@ $conn->set_charset("utf8");
 						   
 				          </tr>
 				    '.$outUPD.$outDEL.$outNotFound.'</table>';
-
-				    
 
 				}
 
