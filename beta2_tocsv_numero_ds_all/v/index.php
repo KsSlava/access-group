@@ -258,8 +258,9 @@ $conn->set_charset("utf8");
 					if($q->num_rows > 0){ $r = $q->fetch_assoc(); $fuel = $r['Carburant_Brandstof'];}
 
 
-
-  					$query = "UPDATE `nouveau` SET `vendor`='$codeVendeur', `fco`='$fco', `titre`='$annee_modele', `fuel`='$fuel', `vpvu`='$vpvu', `dateSold`='$dateSold' WHERE `numero` = '$numero'";
+					$update = date('Y-m-d');
+					
+  					$query = "UPDATE `nouveau` SET `vendor`='$codeVendeur', `fco`='$fco', `titre`='$annee_modele', `fuel`='$fuel', `vpvu`='$vpvu', `dateSold`='$dateSold', `update`='$update'  WHERE `numero` = '$numero'";
   					$q = $conn->query($query);
 
   					
@@ -540,7 +541,7 @@ $conn->set_charset("utf8");
 
 				if($_POST['do']=='update') {
 
-					echo $message; 
+					//echo $message; 
 
 				}else{
 			   
@@ -572,7 +573,8 @@ $conn->set_charset("utf8");
 
 		if($_POST['do']=='update') {
 
-			echo json_encode("No cars for updating."); 
+			//echo json_encode("No cars for updating."); 
+
 		}else{
 			
             echo "No cars for updating."; 

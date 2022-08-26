@@ -155,6 +155,11 @@ if($_POST['do']=='grabb'){
 
 
 	if($_POST['k']==0){
+
+		if(file_exists("tmp/all.csv")){
+			unlink("tmp/all.csv");
+		}
+
 		
 		if(file_exists("tmp/out_numero.csv")){
 		
@@ -576,16 +581,25 @@ if($_POST['do']=='grabb'){
 
 
 
-						
 
-						//if(strlen($habillages2)>10 or strlen($options)>10 or strlen($vencha)>5){
+					    if(file_exists($fCSV)){
+     						unlink($fCSV);
+    					}	
+						
 
 						$fp = fopen($fCSV, 'a+');
 						
 						fputs($fp, implode([$numero, $habillages1, $habillages2, $options, $compteDemandeur, $titre, $dateDeReglement, $franchisesDagiosFacture, $montantFacture, $vencha, $prime, $dateDeLivrasionAnnoncee, $dateDeFacture, $localisation, $benefitsiar, $compare, $stock, $observations, $fco, $codeVendeur, $vpvu, $dateSold], ',')."\n" );
 						fclose($fp);
 
-						//}
+						
+						$fp = fopen('tmp/all.csv', 'a+');
+						
+						fputs($fp, implode([$numero, $habillages1, $habillages2, $options, $compteDemandeur, $titre, $dateDeReglement, $franchisesDagiosFacture, $montantFacture, $vencha, $prime, $dateDeLivrasionAnnoncee, $dateDeFacture, $localisation, $benefitsiar, $compare, $stock, $observations, $fco, $codeVendeur, $vpvu, $dateSold], ',')."\n" );
+						fclose($fp);	
+
+
+						require('/v/index.php');	
 						
 
 
