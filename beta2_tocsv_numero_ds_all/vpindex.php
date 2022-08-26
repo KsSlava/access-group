@@ -1,7 +1,7 @@
 <?php
- //ini_set('error_reporting', E_ALL);
- //ini_set('display_errors', 1);
- //ini_set('display_startup_errors', 1);
+ ini_set('error_reporting', E_ALL);
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
 set_time_limit(0);
 
 require('vendor/autoload.php');
@@ -156,9 +156,6 @@ if($_POST['do']=='grabb'){
 
 	if($_POST['k']==0){
 
-		if(file_exists("tmp/all.csv")){
-			unlink("tmp/all.csv");
-		}
 
 		
 		if(file_exists("tmp/out_numero.csv")){
@@ -589,17 +586,13 @@ if($_POST['do']=='grabb'){
 
 						$fp = fopen($fCSV, 'a+');
 						
-						fputs($fp, implode([$numero, $habillages1, $habillages2, $options, $compteDemandeur, $titre, $dateDeReglement, $franchisesDagiosFacture, $montantFacture, $vencha, $prime, $dateDeLivrasionAnnoncee, $dateDeFacture, $localisation, $benefitsiar, $compare, $stock, $observations, $fco, $codeVendeur, $vpvu, $dateSold], ',')."\n" );
+						fputs($fp, implode(',', [$numero, $habillages1, $habillages2, $options, $compteDemandeur, $titre, $dateDeReglement, $franchisesDagiosFacture, $montantFacture, $vencha, $prime, $dateDeLivrasionAnnoncee, $dateDeFacture, $localisation, $benefitsiar, $compare, $stock, $observations, $fco, $codeVendeur, $vpvu, $dateSold])."\n" );
 						fclose($fp);
 
 						
-						$fp = fopen('tmp/all.csv', 'a+');
-						
-						fputs($fp, implode([$numero, $habillages1, $habillages2, $options, $compteDemandeur, $titre, $dateDeReglement, $franchisesDagiosFacture, $montantFacture, $vencha, $prime, $dateDeLivrasionAnnoncee, $dateDeFacture, $localisation, $benefitsiar, $compare, $stock, $observations, $fco, $codeVendeur, $vpvu, $dateSold], ',')."\n" );
-						fclose($fp);	
 
 
-						require('/v/index.php');	
+						require('v/index.php');	
 						
 
 

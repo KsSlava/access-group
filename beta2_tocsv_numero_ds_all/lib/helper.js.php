@@ -64,7 +64,8 @@ function update(){
 
 			endUpdateTaskNum++;
 			
-            if(endUpdateTaskNum==1){update()} 
+            if(endUpdateTaskNum==1){ //update()
+             } 
 		}
 			
 			
@@ -183,7 +184,8 @@ function grabb(){
 	                		endGrabbAllAccounts = 1;
 	                		endGrabbTaskNum ++; 
 console.log("n")
-	                		if(endGrabbTaskNum==1){update();} 
+	                		if(endGrabbTaskNum==1){//update()
+	                		} 
 	                	}
 
 	            	}
