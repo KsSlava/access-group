@@ -345,13 +345,14 @@ if($_POST['do']=='grabb'){
 						if(!empty($cdHTML)){
 
 							$cdObj = str_get_html($cdHTML);
-
-							$compteDemandeur = trim($cdObj->find('td', 5)->plaintext);
-
-							if(strlen($compteDemandeur)>2){
-
-								$compteDemandeur = substr($compteDemandeur, 0, 6);
-							}
+							
+				            preg_match('/Compte\s+demandeur\s+[:].*?(<\/td>.*?<\/td>)/si', $file, $m); 
+				            if(count($m)==2){
+				               preg_match('/[0-9a-zA-Z]+/', trim( strip_tags($m[1]) ), $c);
+				               if(count($c)==1){
+				                $compteDemandeur = trim($c[0]);
+				               }
+				            }
 							
 							$benefitsiar = trim($cdObj->find('td', 17)->plaintext);
 
@@ -604,9 +605,17 @@ if($_POST['do']=='grabb'){
 				}
 	        }else{
 
+			    if(file_exists($fNotFoundIdsCSV)){
+					unlink($fNotFoundIdsCSV);
+				}	
+
+
 	            $fp = fopen($fNotFoundIdsCSV, 'a+');
 	            fputcsv($fp, array($numero));   
 	            fclose($fp);
+
+	            //require('v/index.php');	
+
 	            echo json_encode("no");
 	        }  
 

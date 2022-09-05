@@ -408,14 +408,14 @@ if(file_exists($csv)){
 								if(!in_array($compteDemandeur, $deleteType)){ 
 
 
-									$q2 = "SELECT `numero` FROM  $dt_vps WHERE `numero` = '$numero' LIMIT 1 ";
+									$q2 = "SELECT `numero` FROM  `voiture_passage_bourse` WHERE `numero` = '$numero' LIMIT 1 ";
 									if( !$result2 = $conn->query($q2)->fetch_assoc() ){
 
 										$in2 = "INSERT INTO `voiture_passage_bourse`(`numero`, `serie`, `modele`, `nbre_de_portes`, `cylindree`, `cv`, `essence`, `couleur`, `int`, `options`, `chassis`, `localisation`, `sem`, `prime`, `remarque`, `concessionnaire`, `cle`, `plaque`, `km`, `immatriculation`, `libre`, `annee_modele`) SELECT `numero`, `serie`, `modele`, `nbre_de_portes`, `cylindree`, `cv`, `essence`, `couleur`, `int`, `options`, `chassis`, `localisation`, `sem`, `prime`, `remarque`, `concessionnaire`, `cle`, `plaque`, `km`, `immatriculation`, `libre`, `annee_modele` FROM $dt where `numero` = $numero"; 
 
 										$conn->query($in2);
 
-										//email($numero, $benefitsiar); 
+										email($numero, $benefitsiar); 
 
 									    $conn->query("DELETE FROM $dt WHERE `numero` = '$numero' ");
 
